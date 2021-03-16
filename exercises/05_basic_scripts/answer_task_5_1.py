@@ -20,7 +20,7 @@ $ python task_5_1.py
 Все задания надо выполнять используя только пройденные темы. То есть эту задачу можно
 решить без использования условия if.
 """
-name = input('Введите имя устройства: ')
+
 london_co = {
     "r1": {
         "location": "21 New Globe Walk",
@@ -46,4 +46,7 @@ london_co = {
         "routing": True,
     },
 }
-print(london_co[name])
+
+device = input("Введите имя устройства: ")
+
+print(london_co[device])

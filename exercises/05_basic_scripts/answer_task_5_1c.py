@@ -23,6 +23,7 @@ $ python task_5_1c.py
 Все задания надо выполнять используя только пройденные темы. То есть эту задачу можно
 решить без использования условия if.
 """
+
 london_co = {
     "r1": {
         "location": "21 New Globe Walk",
@@ -48,8 +49,9 @@ london_co = {
         "routing": True,
     },
 }
-name = input('Введите имя устройства: ')
-a = list(london_co[name].keys())
-a = ','.join(a)
-key = input('Введите имя параметра ' + '(' + a + ')' +':' + ' ')
-print(london_co[name].get(key.lower(),'Такого параметра нет'))
+
+device = input("Введите имя устройства: ")
+params = ", ".join(london_co[device].keys())
+parameter = input(f"Введите имя параметра ({params}): ")
+
+print(london_co[device].get(parameter, "Такого параметра нет"))

@@ -24,19 +24,39 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
-network = input('Введите адрес сети и маску через "/" (пример: 186.19.47.234/27): ')
-netmask = network.split('/')
-ip = netmask[0]
-mask = netmask[1]
-ip = ip.split('.')
-oct1, oct2, oct3, oct4 = int(ip[0]), int(ip[1]), int(ip[2]), int(ip[3])
-maskb = '1'*int(mask)+((32-int(mask))*'0')
-octmask1, octmask2, octmask3, octmask4 = maskb[0:8], maskb[8:16], maskb[16:24], maskb[24:32]
-print(f'''
+
+network = input("Введите адрес сети: ")
+
+ip, mask = network.split("/")
+ip_list = ip.split(".")
+mask = int(mask)
+
+oct1, oct2, oct3, oct4 = [
+    int(ip_list[0]),
+    int(ip_list[1]),
+    int(ip_list[2]),
+    int(ip_list[3]),
+]
+
+bin_mask = "1" * mask + "0" * (32 - mask)
+m1, m2, m3, m4 = [
+    int(bin_mask[0:8], 2),
+    int(bin_mask[8:16], 2),
+    int(bin_mask[16:24], 2),
+    int(bin_mask[24:32], 2),
+]
+
+ip_output = """
 Network:
-{oct1:<8} {oct2:<8} {oct3:<8} {oct4:<8}
-{oct1:08b} {oct2:08b} {oct3:08b} {oct4:08b}
+{0:<8}  {1:<8}  {2:<8}  {3:<8}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}"""
+
+mask_output = """
 Mask:
-/{mask}
-{int(octmask1,2):<8} {int(octmask2,2):<8} {int(octmask3,2):<8} {int(octmask4,2):<8}
-{int(octmask1,2):08b} {int(octmask2,2):08b} {int(octmask3,2):08b} {int(octmask4,2):08b}''')
+/{0}
+{1:<8}  {2:<8}  {3:<8}  {4:<8}
+{1:08b}  {2:08b}  {3:08b}  {4:08b}
+"""
+
+print(ip_output.format(oct1, oct2, oct3, oct4))
+print(mask_output.format(mask, m1, m2, m3, m4))
